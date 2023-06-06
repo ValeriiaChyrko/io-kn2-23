@@ -1,0 +1,6 @@
+*
+!invoice/
+!writeoff/
+!utilization/
+!transfer/
+!.gitignore

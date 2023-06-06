@@ -1,0 +1,38 @@
+composer require laravel/ui
+composer require laravel/socialite
+php artisan ui vue --auth
+npm install
+npm run dev
+php artisan migrate
+php artisan route:list
+-
+php artisan migrate:refresh
+-
+php artisan make:model Models/InventoryItem -m
+php artisan make:model Models/InventoryType -m
+php artisan make:model Models/InventoryInvoice -m
+php artisan make:model Models/InventoryModel -m
+php artisan make:model Models/InventoryDepartment -m
+php artisan make:model Models/InventoryStatus -m
+php artisan make:model Models/InventoryLicense -m
+php artisan make:model Models/InventoryTransfer -m
+php artisan make:model Models/InventoryRepair -m
+php artisan make:model Models/InventoryRepairAgent -m
+php artisan make:model Models/InventoryWriteoff -m
+php artisan make:model Models/InventoryUtilization -m
+php artisan make:model Models/InventoryUtilizationAgent -m
+-
+php artisan make:controller Inventory/BaseController
+php artisan make:controller Inventory/ItemController --resource
+php artisan make:controller Inventory/Admin/BaseController
+php artisan make:controller Inventory/Admin/ItemController --resource
+//Departments
+php artisan make:controller Inventory/Admin/DepartmentController --resource
+php artisan make:seeder InventoryDepartmentsTableSeeder
+php artisan make:seeder UsersTableSeeder
+php artisan db:seed
+//php artisan vendor:publish --tag=laravel-pagination
+//Users //зробити
+php artisan make:controller Inventory/Admin/UserController --resource
+
+php artisan migrate:refresh --seed

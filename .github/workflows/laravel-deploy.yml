@@ -1,0 +1,35 @@
+name: PUSH Workflow
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  deploy-production:
+    name: Deploy Project to PRODUCTION Server
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /usr/local/www/data/io/
+            sudo git checkout -f
+            sudo git pull
+            sudo composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            sudo npm install
+            sudo npm run prod
+            sudo php artisan migrate
+            sudo php artisan role:load-permissions
+            sudo php artisan optimize
+            sudo chown -R web:web *

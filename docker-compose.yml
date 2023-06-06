@@ -1,0 +1,60 @@
+version: '3'
+
+networks:
+  io:
+
+services:
+  nginx:
+    build:
+      context: ./.docker
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/io:delegated
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - io
+
+  mysql:
+    image: mysql:5.7.39
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "4306:3306"
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: io
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - io
+
+  php:
+    build:
+      context: ./.docker
+      dockerfile: php.dockerfile
+    container_name: php
+    volumes:
+      - ./:/var/www/io:delegated
+    networks:
+      - io
+
+
+  node:
+    build:
+      context: ./.docker
+      dockerfile: node.dockerfile
+    container_name: node
+    volumes:
+      - ./:/var/www/io:delegated
+    networks:
+      - io

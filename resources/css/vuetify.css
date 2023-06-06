@@ -1,0 +1,23 @@
+/* Checkbox style */
+.v-input--checkbox .v-label {
+    margin-bottom: 0 !important;
+}
+
+/* DataTable Expanded row style */
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr.v-data-table__expanded__row {
+    background: #2196F3;
+    color: #ffffff;
+}
+
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr.v-data-table__expanded__row .data-table-expandable-row-badge .v-badge__badge {
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr.v-data-table__expanded__row:hover {
+    background: #1E88E5 !important;
+}
+
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr.v-data-table__expanded__row .v-icon {
+    color: #ffffff;
+}

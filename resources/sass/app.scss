@@ -1,0 +1,17 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// MDI Icons
+@import '~@mdi/font/css/materialdesignicons.min.css';
+
+// IO Styles
+@import '../css/app.css';
+
+// Custom styles for Vuetify components
+@import '../css/vuetify.css';
+
+// Elements
+@import 'elements/transitions';

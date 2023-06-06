@@ -1,0 +1,22 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+@media print
+{
+    table { page-break-after:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    td    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
+}
+
+.text-center {
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+    padding: 6px;
+}
